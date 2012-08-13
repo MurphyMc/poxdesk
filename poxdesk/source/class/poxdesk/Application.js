@@ -12,6 +12,7 @@
 
 #asset(poxdesk/*)
 #asset(qx/icon/Tango/16/categories/internet.png)
+#asset(qx/icon/Tango/22/categories/internet.png)
 #asset(qx/icon/Tango/16/apps/*)
 #asset(qx/icon/Tango/16/actions/*)
 #asset(qx/icon/Tango/22/actions/*)
@@ -112,6 +113,7 @@ qx.Class.define("poxdesk.Application",
       }, this);
 
       this.addToStart("LogViewer", function () { new poxdesk.LogViewer(); }, "icon/22/apps/utilities-log-viewer.png");
+      this.addToStart("TopoViewer", function () { new poxdesk.TopoViewer(); }, "icon/22/categories/internet.png");
       this.addToStart("TableViewer", function () { new poxdesk.TableViewer(); }, "icon/22/actions/system-search.png");
       this.addToStart("L2 Learning Switch", function () { new poxdesk.LearningSwitch(); }, "icon/22/devices/network-wired.png");
     },
