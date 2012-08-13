@@ -114,7 +114,13 @@ qx.Class.define("poxdesk.LearningSwitch",
           if (out_port !== undefined)
             po.output = out_port; // Shortcut
           else
-            po.output = "OFPP_ALL";
+          {
+            if (this._use_flood)
+              po.output = "OFPP_FLOOD";
+            else
+              po.output = "OFPP_ALL";
+          }
+          this.debug(po.output);
 
           /*
           po.actions = {};
@@ -270,6 +276,12 @@ qx.Class.define("poxdesk.LearningSwitch",
       */
 
       menu = new qx.ui.menu.Menu();
+      opt = new qx.ui.menu.CheckBox("Use Flood");
+      opt.setValue(this._use_flood);
+      opt.addListener("changeValue", function (v) {
+        this._use_flood = v.getData();
+      }, this);
+      menu.add(opt);
       opt = new qx.ui.menu.Button("Refresh");
       opt.addListener("execute", function () {
         this._sendTable();
@@ -297,6 +309,7 @@ qx.Class.define("poxdesk.LearningSwitch",
     _container : null,
     _controls : null,
     _table : null,
+    _use_flood : true,
     _tableModel : null
   }, 
 
