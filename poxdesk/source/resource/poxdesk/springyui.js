@@ -113,7 +113,7 @@ jQuery.fn.springy = function(params) {
 		// Bug! Node's mass isn't reset on mouseup. Nodes which have been
 		// dragged don't repulse very well. Store the initial mass in mousedown
 		// and then restore it here.
-if (dragged)    dragged.point.m = dragged.point.oldmass;
+if (dragged && dragged.point)    dragged.point.m = dragged.point.oldmass;
 		dragged = null;
 	});
 
