@@ -675,7 +675,7 @@ this.debug("move: (" + r + ", " + c + ")");
                                 n_at.mode ^= this.__self.A_REVERSE;
                         }
                         // If the attributes changed, make a new span.
-                        if (n_at.mode != at.mode || n_at.fg != at.fg || n_at.bg != at.bg) {
+                        if (at == -1 || n_at.mode != at.mode || n_at.fg != at.fg || n_at.bg != at.bg) {
                                 if (c > 0) {
                                         stuff += end_tag;
                                 }
@@ -696,7 +696,7 @@ this.debug("move: (" + r + ", " + c + ")");
                                 stuff += start_tag;
                                 end_tag = "</span>" + end_tag;
                                 at = n_at;
-                                added_end_tag = true;
+                                added_end_tag = false;//true;
                         } else if (c == 0) {
                                 stuff += start_tag;
                         }
@@ -714,6 +714,9 @@ this.debug("move: (" + r + ", " + c + ")");
                             default:
                                 stuff += ch;
                         }
+                        //if (c == wc-1)
+                        //{
+                        //}
                 }
                 if (!added_end_tag)
                         stuff += end_tag;
