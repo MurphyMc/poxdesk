@@ -77,7 +77,24 @@ qx.Class.define("poxdesk.Application",
 
       var windowManager = new qx.ui.window.Manager();
       var desktop = new qx.ui.window.Desktop(windowManager);
-      desktop.set({decorator: "main", backgroundColor: "#8080A0"});
+      //desktop.set({decorator: "main", backgroundColor: "#8080A0"});
+var dec = new poxdesk.Wallpaper();
+dec.setStartColor("#8085a0");//7989aa");
+dec.setEndColor("#4f506b");
+//dec.setEndColor("#3f406b");
+desktop.set({decorator: dec});
+
+      /*
+background: #7989aa;
+background: -moz-linear-gradient(-45deg,  #7989aa 0%, #3f4c6b 100%);
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#7989aa), color-stop(100%,#3f4c6b));
+background: -webkit-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
+background: -o-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
+background: -ms-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
+background: linear-gradient(135deg,  #7989aa 0%,#3f4c6b 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7989aa', endColorstr='#3f4c6b',GradientType=1 );
+*/
+
       container.add(desktop, {flex:1});
 
 
@@ -116,6 +133,9 @@ qx.Class.define("poxdesk.Application",
       this.addToStart("TopoViewer", function () { new poxdesk.TopoViewer(); }, "icon/22/categories/internet.png");
       this.addToStart("TableViewer", function () { new poxdesk.TableViewer(); }, "icon/22/actions/system-search.png");
       this.addToStart("L2 Learning Switch", function () { new poxdesk.LearningSwitch(); }, "icon/22/devices/network-wired.png");
+
+      this.addToStart("Terminal", function () { new poxdesk.Terminal(); }, "icon/22/apps/utilities-terminal.png");
+
     },
 
     addToStart : function (name, callback, icon, self)
