@@ -162,7 +162,7 @@ this._edges = {};
         {
           var dead = dead_edge_names[edge_name];
           this.graph.removeEdge(dead);
-          delete this._edges[dead];
+          delete this._edges[edge_name];
         }
 
       }
