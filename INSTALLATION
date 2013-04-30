@@ -1,0 +1,12 @@
+ - Ensure you have the latest version of POX
+ - Place this directory under pox/ext/
+ - Install qooxdoo:
+
+$ cd pox/ext/poxdesk/
+$ wget "http://downloads.sourceforge.net/project/qooxdoo/qooxdoo-current/2.1.1/qooxdoo-2.1.1-sdk.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fqooxdoo%2Ffiles%2Fqo
+$ unzip qz.zip
+
+ - Run with:
+
+$ cd ../../
+$ ./pox.py poxdesk
