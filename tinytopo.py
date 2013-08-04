@@ -84,7 +84,7 @@ class TinyTopo (messenger.ChannelBot):
 
     if event.added:
       self.links.add((s1,s2))
-    elif event.removed and (s2,s2) in self.links:
+    elif event.removed and (s1,s2) in self.links:
       self.links.remove((s1,s2))
 
     self.send_table()
