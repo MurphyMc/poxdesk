@@ -32,12 +32,6 @@ qx.Theme.define("poxdesk.theme.Appearance",
           decorator = "toolbar-button-hovered";
         }
 
-        var useCSS = qx.core.Environment.get("css.gradients") &&
-          qx.core.Environment.get("css.borderradius");
-        if (useCSS && decorator) {
-          decorator += "-css";
-        }
-
         return {
           marginTop : 2,
           marginBottom : 2,
