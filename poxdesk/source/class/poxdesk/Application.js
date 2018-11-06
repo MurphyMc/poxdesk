@@ -53,6 +53,11 @@ qx.Class.define("poxdesk.Application",
       ctxt.ret(r);
     },
 
+    _pdmethod_new_CableBear : function (ctxt)
+    {
+      new poxdesk.CableBear();
+    },
+
     /**
      * This method contains the initial application code and gets called
      * during startup of the application
@@ -78,6 +83,8 @@ qx.Class.define("poxdesk.Application",
         Below is your actual application code...
       -------------------------------------------------------------------------
       */
+      poxdesk.CableBear; // Force it to be included
+
       this.poxdesk = new poxdesk.POXDesk();
 
 this.poxdesk.addListener("configured", function () {
@@ -138,6 +145,7 @@ this.poxdesk.dispatcher.getExposedObjects()[undefined] = this;
 //      this.addToStart("TableViewer", function () { new poxdesk.TableViewer(); }, "icon/22/actions/system-search.png");
 //      this.addToStart("L2 Learning Switch", function () { new poxdesk.LearningSwitch(); }, "icon/22/devices/network-wired.png");
 //      this.addToStart("CableBear", function () { new poxdesk.CableBear(); }, "icon/22/devices/network-wired.png");
+      this.addApp("CableBear", "icon/22/devices/network-wired.png");
 
 //      this.addToStart("Terminal", function () { new poxdesk.Terminal(); }, "icon/22/apps/utilities-terminal.png");
 
