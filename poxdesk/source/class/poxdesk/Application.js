@@ -42,10 +42,21 @@ qx.Class.define("poxdesk.Application",
 
   members :
   {
+    _pdmethod_alertBox : function (ctxt, msg)
+    {
+      window.alert(msg);
+    },
+
+    _pdmethod_promptBox : function (ctxt, text, defaultText)
+    {
+      var r = window.prompt(text, defaultText);
+      ctxt.ret(r);
+    },
+
     /**
-     * This method contains the initial application code and gets called 
+     * This method contains the initial application code and gets called
      * during startup of the application
-     * 
+     *
      * @lint ignoreDeprecated(alert)
      */
     main : function()
@@ -67,6 +78,10 @@ qx.Class.define("poxdesk.Application",
         Below is your actual application code...
       -------------------------------------------------------------------------
       */
+      this.poxdesk = new poxdesk.POXDesk();
+
+this.poxdesk.addListener("configured", function () {
+this.poxdesk.dispatcher.getExposedObjects()[undefined] = this;
 
       window.document.title = "POXDesk"; // Must be a better way
 
@@ -77,23 +92,11 @@ qx.Class.define("poxdesk.Application",
 
       var windowManager = new qx.ui.window.Manager();
       var desktop = new qx.ui.window.Desktop(windowManager);
-      //desktop.set({decorator: "main", backgroundColor: "#8080A0"});
-var dec = new poxdesk.Wallpaper();
-dec.setStartColor("#8085a0");//7989aa");
-dec.setEndColor("#4f506b");
-//dec.setEndColor("#3f406b");
-desktop.set({decorator: dec});
 
-      /*
-background: #7989aa;
-background: -moz-linear-gradient(-45deg,  #7989aa 0%, #3f4c6b 100%);
-background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#7989aa), color-stop(100%,#3f4c6b));
-background: -webkit-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
-background: -o-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
-background: -ms-linear-gradient(-45deg,  #7989aa 0%,#3f4c6b 100%);
-background: linear-gradient(135deg,  #7989aa 0%,#3f4c6b 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7989aa', endColorstr='#3f4c6b',GradientType=1 );
-*/
+      var dec = new poxdesk.Wallpaper();
+      dec.setStartColor("#8085a0");//7989aa");
+      dec.setEndColor("#4f506b");
+      desktop.set({decorator: dec});
 
       container.add(desktop, {flex:1});
 
@@ -111,7 +114,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7989aa', end
       // Customize the menu button
       var button = taskbar.getMenuButton();
       button.setIcon("/favicon.gif");//icon/16/categories/internet.png");
-      button.setLabel("POX");      
+      button.setLabel("POX");
       var mainMenu = new qx.ui.menu.Menu();
       this._startMenu = mainMenu;
       button.setMenu(mainMenu);
@@ -125,16 +128,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7989aa', end
         c.setIcon("icon/16/apps/utilities-calculator.png");
         c.setShowClose(true);
         var model = new showcase.page.theme.calc.Model();
-        new showcase.page.theme.calc.Presenter(c, model);        
-        poxdesk.ui.window.Window.configure(c, {width:c.getWidth()*.75, height:c.getHeight()});        
+        new showcase.page.theme.calc.Presenter(c, model);
+        poxdesk.ui.window.Window.configure(c, {width:c.getWidth()*.75, height:c.getHeight()});
       }, this);
 
-      this.addToStart("LogViewer", function () { new poxdesk.LogViewer(); }, "icon/22/apps/utilities-log-viewer.png");
-      this.addToStart("TopoViewer", function () { new poxdesk.TopoViewer(); }, "icon/22/categories/internet.png");
-      this.addToStart("TableViewer", function () { new poxdesk.TableViewer(); }, "icon/22/actions/system-search.png");
-      this.addToStart("L2 Learning Switch", function () { new poxdesk.LearningSwitch(); }, "icon/22/devices/network-wired.png");
+      this.addApp("LogViewer", "icon/22/apps/utilities-log-viewer.png");
+//      this.addToStart("LogViewer", function () { new poxdesk.LogViewer(); }, "icon/22/apps/utilities-log-viewer.png");
+//      this.addToStart("TopoViewer", function () { new poxdesk.TopoViewer(); }, "icon/22/categories/internet.png");
+//      this.addToStart("TableViewer", function () { new poxdesk.TableViewer(); }, "icon/22/actions/system-search.png");
+//      this.addToStart("L2 Learning Switch", function () { new poxdesk.LearningSwitch(); }, "icon/22/devices/network-wired.png");
+//      this.addToStart("CableBear", function () { new poxdesk.CableBear(); }, "icon/22/devices/network-wired.png");
 
-      this.addToStart("Terminal", function () { new poxdesk.Terminal(); }, "icon/22/apps/utilities-terminal.png");
+//      this.addToStart("Terminal", function () { new poxdesk.Terminal(); }, "icon/22/apps/utilities-terminal.png");
 
     },
 
@@ -146,6 +151,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7989aa', end
       item.addListener("execute", callback, self);
     },
 
+    poxdesk : null,
     _startMenu : null
   }
 });

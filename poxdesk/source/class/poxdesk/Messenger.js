@@ -78,7 +78,7 @@ qx.Class.define("poxdesk.Messenger",
             //if (self._tx_seq < result.ack) self._tx_seq = result.ack;
           } else
           {
-            alert("Bad send");
+            window.alert("Bad send");
           }
         } else {
           self.debug("tx error", err);
