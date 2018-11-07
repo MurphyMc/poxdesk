@@ -304,11 +304,12 @@ def ask_name ():
 
 
 
-def launch (websocket=False, secret_file=None):
+def launch (websocket=False, secret_file=None, force_source=False):
   base = os.path.dirname(__file__)
 
   have_qx = os.path.exists(os.path.join(base,"qx"))
   have_build = os.path.exists(os.path.join(base,"poxdesk","build"))
+  if force_source: have_build = False
 
 
   if not have_qx and not have_build:
