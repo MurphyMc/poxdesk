@@ -188,7 +188,7 @@ qx.Class.define("poxdesk.LogViewer",
 
       menu = new qx.ui.menu.Menu;
       opt = new qx.ui.menu.CheckBox("l2_learning");
-      opt.addListener("execute", function () { alert("Not implemented yet"); });
+      opt.addListener("execute", function () { window.alert("Not implemented yet"); });
       menu.add(opt);
       bar.add(new qx.ui.menubar.Button("Component", null, menu));
 
