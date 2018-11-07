@@ -42,7 +42,16 @@
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "en" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
-    "ROOT"         : "."
+    "ROOT"         : ".",
+    "OPTIMIZE"     : [
+       "basecalls",
+       "comments",
+       /*"privates",*/
+       "strings",
+       "variables",
+       "variants",
+       "whitespace"
+    ]
   },
 
   // You only need to edit the remainder of this file, if you want to customize
