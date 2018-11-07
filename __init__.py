@@ -309,7 +309,7 @@ def launch (websocket=False, secret_file=None, force_source=False):
 
   have_qx = os.path.exists(os.path.join(base,"qx"))
   have_build = os.path.exists(os.path.join(base,"poxdesk","build"))
-  if force_source: have_build = False
+  if force_source and have_qx: have_build = False
 
 
   if not have_qx and not have_build:
