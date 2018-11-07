@@ -10,6 +10,14 @@ qx.Class.define("poxdesk.ui.window.Window",
 
     poxdesk.ui.window.Window.configure(this, props);
   },
+  destruct : function ()
+  {
+    this.getDesktop().remove(this);
+  },
+  properties :
+  {
+    desktop: {}
+  },
   members :
   {
 
@@ -31,6 +39,7 @@ qx.Class.define("poxdesk.ui.window.Window",
       if (desktop === undefined)
         desktop = qx.core.Init.getApplication().getUserData("desktop");
       if (!desktop) win.debug("No desktop for window!");
+      win.setDesktop(desktop);
 
       desktop.add(win);
 
