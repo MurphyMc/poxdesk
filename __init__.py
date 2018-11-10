@@ -145,8 +145,9 @@ class DispatcherSession (WebsocketHandler):
         if method is None:
           method = self.dispatcher.exposed_functions.get(mname)
           if method is None:
-            o = self.dispatcher
-            method = getattr(o, "_pdmethod_" + msg['method'])
+            method = getattr(self, "_pdmethod_" + msg['method'])
+            if method is None:
+              method = getattr(self.dispatcher, "_pdmethod_" + msg['method'])
 
       args = msg['args'] if 'args' in msg else ()
       kw = msg['kw'] if 'kw' in msg else {}
