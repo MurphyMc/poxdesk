@@ -42,6 +42,17 @@ qx.Class.define("poxdesk.Application",
 
   members :
   {
+    addApp : function (name, icon)
+    {
+      icon = icon ? icon : "icon/22/mimetypes/executable.png";
+      name = name.replace(/_/gi, "");
+      if (name[0] !== name[0].toUpperCase()) return;
+      icon = icon.replace(/:/gi, "");
+      var app = poxdesk[name];
+      console.log("App", name, app);
+      this.addToStart(name, function () { new app(); }, icon);
+    },
+
     _pdmethod_alertBox : function (ctxt, msg)
     {
       window.alert(msg);
