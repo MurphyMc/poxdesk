@@ -24,7 +24,7 @@ qx.Class.define("poxdesk.POXDesk",
       if (resp.ws)
       {
         this.dispatcher = new poxdesk.WebsocketDispatcher();
-        this.dispatcher.setLocation("ws://" + location.host + "/poxdesk/_/ws/main");
+        this.dispatcher.setLocation("//" + location.host + "/poxdesk/_/ws/main");
 
         if (resp.ws.queue_pending !== undefined) this.dispatcher.setQueuePending(resp.ws.queue_pending);
         if (resp.ws.json_mode !== undefined) this.dispatcher.setJsonMode(resp.ws.json_mode);

@@ -78,7 +78,14 @@ qx.Class.define("poxdesk.WebsocketChannel",
         if (this._timer.isEnabled()) this._timer.stop();
         return;
       }
-      this._socket = new window.WebSocket(this.getLocation());
+
+      var loc = this.getLocation();
+      if (loc.startsWith("/"))
+      {
+        var proto = location.protocol == "https:" ? "wss://" : "ws://";
+        loc = proto + loc;
+      }
+      this._socket = new window.WebSocket(loc);
       this._socket.onclose = function () {
         console.log("Reconnect momentarily...");
         try

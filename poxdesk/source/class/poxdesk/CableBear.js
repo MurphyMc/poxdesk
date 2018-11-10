@@ -65,7 +65,7 @@ qx.Class.define("poxdesk.CableBear",
     this._dispatcher.addListener("message", this._on_message, this);
     this._dispatcher.addListener("disconnected", function () { this._container.setCaption("Disconnected - CableBear"); this._dispatcher.close(); }, this);
     this._dispatcher.addListener("connected", function () { this._container.setCaption("CableBear"); }, this);
-    this._dispatcher.setLocation("ws://" + location.host + "/cable_bear/ws");
+    this._dispatcher.setLocation("//" + location.host + "/cable_bear/ws");
     this._dispatcher.start();
     console.log("CableBear starting...");
 
