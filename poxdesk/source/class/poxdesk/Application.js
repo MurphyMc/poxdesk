@@ -87,8 +87,9 @@ qx.Class.define("poxdesk.Application",
 
       this.poxdesk = new poxdesk.POXDesk();
 
-this.poxdesk.addListener("configured", function () {
-this.poxdesk.dispatcher.getExposedObjects()[undefined] = this;
+      this.poxdesk.addListener("configured", function () {
+        this.poxdesk.dispatcher.getExposedObjects()[undefined] = this;
+      }, this);
 
       window.document.title = "POXDesk"; // Must be a better way
 
