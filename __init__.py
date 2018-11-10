@@ -194,12 +194,13 @@ class Dispatcher (EventMixin):
 
   max_waiting = 75
 
+  _websocket_enabled = False
+
   def __init__ (self, websocket_path, websocket_session_type):
     self.exposed_objects = {}
     self.exposed_functions = {}
     self.websocket_path = websocket_path
     self.websocket_session_type = websocket_session_type
-    self._websocket_enabled = False
     self.sessions = WeakSet()
     if websocket_path:
       self.websocket_enabled = True
